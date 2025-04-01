@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -21,7 +20,7 @@ func main() {
 
 	go func() {
 		if err := apiServer.Server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			log.Fatal(fmt.Sprintf("listen: %s\n", err))
+			log.Fatalf("listen: %s\n", err)
 		}
 	}()
 
