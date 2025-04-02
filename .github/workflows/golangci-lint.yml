@@ -2,9 +2,9 @@ name: golangci-lint
 
 on:
   push:
-    branches: [ "feature/**" ]
+    branches: ["feature/**"]
   pull_request:
-    branches: ["development", "testing", "production" ]
+    branches: ["development", "testing", "production"]
 
 permissions:
   contents: read
@@ -22,4 +22,4 @@ jobs:
         uses: golangci/golangci-lint-action@v7
         with:
           version: v2.0
-
+          working-directory: backend/api-service/

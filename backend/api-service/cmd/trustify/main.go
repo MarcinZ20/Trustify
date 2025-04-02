@@ -9,8 +9,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/MarcinZ20/Trustify/api/routes"
-	"github.com/MarcinZ20/Trustify/config/server"
+	"github.com/MarcinZ20/Trustify/backend/api-service/api/routes"
+	"github.com/MarcinZ20/Trustify/backend/api-service/config/server"
 )
 
 func main() {

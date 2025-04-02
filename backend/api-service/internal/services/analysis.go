@@ -1,7 +1,7 @@
 package services
 
 import (
-	"github.com/MarcinZ20/Trustify/api/models"
+	"github.com/MarcinZ20/Trustify/backend/api-service/api/models"
 )
 
 func PerformTextAnalysis(header string, content string, url string) (models.ResponseData, error) {

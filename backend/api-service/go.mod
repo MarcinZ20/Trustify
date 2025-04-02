@@ -1,4 +1,4 @@
-module github.com/MarcinZ20/Trustify
+module github.com/MarcinZ20/Trustify/backend/api-service
 
 go 1.24.0
 
