@@ -2,9 +2,9 @@ name: golangci-lint
 
 on:
   push:
-    branches: [ "feature/**" ]
+    branches: ["feature/**"]
   pull_request:
-    branches: ["development", "testing", "production" ]
+    branches: ["development", "testing", "production"]
 
 permissions:
   contents: read
@@ -18,8 +18,11 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: stable
+      - name: Install golangci-lint
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.55.2
+          echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
       - name: golangci-lint-man
         run: |
           cd backend/api-service
           golangci-lint run
-
