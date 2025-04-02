@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/MarcinZ20/Trustify/api/handlers"
+	"github.com/MarcinZ20/Trustify/backend/api-service/api/handlers"
 	"github.com/gin-gonic/gin"
 )
 

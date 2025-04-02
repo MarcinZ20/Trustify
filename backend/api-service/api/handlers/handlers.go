@@ -3,8 +3,8 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/MarcinZ20/Trustify/api/models"
-	"github.com/MarcinZ20/Trustify/internal/services"
+	"github.com/MarcinZ20/Trustify/backend/api-service/api/models"
+	"github.com/MarcinZ20/Trustify/backend/api-service/internal/services"
 	"github.com/gin-gonic/gin"
 )
 
