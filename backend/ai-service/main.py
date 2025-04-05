@@ -18,7 +18,7 @@ async def check_health():
 
 @app.post("/search")
 async def search(payload: SearchData):
-    print(payload)
+    logging.info(payload)
     result = process(payload)
 
     if result == None:
