@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,6 +22,15 @@ func GetConfig() *ServerConfig {
 
 	serverConfig = &ServerConfig{}
 	serverConfig.Router = gin.Default()
+	serverConfig.Router.Use(
+		cors.New(cors.Config{
+			AllowOrigins:  []string{"http://localhost:5173"},
+			AllowMethods:  []string{"GET", "POST"},
+			AllowHeaders:  []string{"Origin", "Content-Type", "Accept"},
+			ExposeHeaders: []string{"Content-Length"},
+			MaxAge:        12 * time.Hour,
+		}))
+
 	serverConfig.Server = http.Server{
 		Addr:           ":8080",
 		Handler:        serverConfig.Router,
