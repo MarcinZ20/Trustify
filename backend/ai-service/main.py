@@ -1,3 +1,5 @@
+import logging
+
 from fastapi import FastAPI
 
 from .models.models import SearchData
