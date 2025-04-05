@@ -14,7 +14,6 @@ import (
 )
 
 func main() {
-
 	apiServer := server.GetConfig()
 	routes.ServerRoutes(apiServer.Router)
 
@@ -39,5 +38,4 @@ func main() {
 
 	<-ctx.Done()
 	log.Println("Server down")
-
 }

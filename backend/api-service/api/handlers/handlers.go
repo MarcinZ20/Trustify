@@ -24,9 +24,7 @@ func HandleSearch(ctx *gin.Context) {
 		})
 	}
 
-	ctx.JSON(http.StatusOK, gin.H{
-		"result": result,
-	})
+	ctx.JSON(http.StatusOK, *result)
 }
 
 func HealthCheck(ctx *gin.Context) {
