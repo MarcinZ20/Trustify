@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import SearchForm from './components/SearchForm.vue'
-import AnswerView from './components/AnswerView.vue'
+import LandingPageView from './views/LandingPageView.vue'
+import AboutView from './views/AboutView.vue'
+import ContactView from './views/ContactView.vue'
+import Footer from './components/Footer.vue'
+import Navbar from './components/Navbar.vue'
 </script>
 
 <template>
-  <header></header>
-  <main>
-    <div class="">
-      <SearchForm />
-    </div>
+  <main class="bg-gray-100">
+    <Navbar />
+    <LandingPageView />
+    <Footer />
   </main>
 </template>
