@@ -1,13 +1,46 @@
 <script setup lang="ts">
-import axios from 'axios'
+import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
+import type { SearchParams } from '@/types/searchParams'
+import { searchContent } from '@/composables/useSearch'
+
+const s = reactive<SearchParams>({
+  headline: '',
+  content: '',
+  url: '',
+})
+
+const router = useRouter()
+
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+const onSubmit = async () => {
+  // Push to the loading page
+  router.push({name: 'LoadingPage'})
+
+  try {
+    const result = await searchContent({...s})
+    await sleep(3000)
+    // After success push to the result page
+    router.push({
+      name: 'ResultsPage',
+      query: { headline: s.headline },
+      state: { result }
+    })
+  } catch (error) {
+    console.log(error)
+    router.push({ name: 'ErrorPage' })
+  }
+}
+
 </script>
 
 <template>
   <div class="p-4 rounded-lg">
-    <form action="" method="post">
+    <form @submit.prevent="onSubmit">
       <div class="grid grid-cols-1 gap-2 md:grid-cols-4">
         <div class="col-span-full md:col-span-3">
           <input
+            v-model.lazy.trim="s.headline"
             type="text"
             id="searchbar"
             name="searchbar"
