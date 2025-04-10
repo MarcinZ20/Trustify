@@ -24,7 +24,7 @@ const onSubmit = async () => {
     router.push({
       name: 'ResultsPage',
       query: { headline: s.headline },
-      state: { result }
+      replace: true,
     })
   } catch (error) {
     console.log(error)
