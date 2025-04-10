@@ -19,7 +19,7 @@ import axios from 'axios'
         <button
           type="submit"
           id="submit-button"
-          class="rounded-lg bg-zinc-800 text-white hover:bg-zinc-900"
+          class="rounded-lg bg-zinc-800 text-white p-1.5 hover:bg-zinc-900"
         >
           Search
         </button>
