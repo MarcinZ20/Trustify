@@ -9,12 +9,17 @@ import {
   MenuItems,
 } from '@headlessui/vue'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
+import { useRoute } from 'vue-router'
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'About', href: '#', current: false },
-  { name: 'Contact', href: '#', current: false },
+  { name: 'Dashboard', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Contact', href: '/contact' },
 ]
+
+const route = useRoute()
+
+const isActive = (href: string) => route.path === href
 </script>
 
 <template>
@@ -47,12 +52,12 @@ const navigation = [
                 :key="item.name"
                 :href="item.href"
                 :class="[
-                  item.current
+                  isActive(item.href)
                     ? 'bg-zinc-800 text-white'
                     : 'text-zinc-800 font-normal hover:bg-zinc-800 hover:text-white',
                   'rounded-md px-3 py-2 text-sm font-medium',
                 ]"
-                :aria-current="item.current ? 'page' : undefined"
+                :aria-current="isActive(item.href) ? 'page' : undefined"
                 >{{ item.name }}</a
               >
             </div>
@@ -81,12 +86,12 @@ const navigation = [
           as="a"
           :href="item.href"
           :class="[
-            item.current
+            isActive(item.href)
               ? 'bg-zinc-900 text-white'
               : 'text-gray-500 hover:bg-zinc-500 hover:text-white',
             'block rounded-md px-3 py-2 text-base font-medium',
           ]"
-          :aria-current="item.current ? 'page' : undefined"
+          :aria-current="isActive(item.href) ? 'page' : undefined"
           >{{ item.name }}</DisclosureButton
         >
       </div>

@@ -7,9 +7,9 @@ import Navbar from './components/Navbar.vue'
 </script>
 
 <template>
-  <main class="bg-gray-100">
+  <main class="flex flex-col justify-between h-screen bg-gray-100">
     <Navbar />
-    <LandingPageView />
+    <router-view class=""></router-view>
     <Footer />
   </main>
 </template>
