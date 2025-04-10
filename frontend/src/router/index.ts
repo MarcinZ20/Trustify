@@ -1,18 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import LoadingPage from '@/views/LoadingPage.vue'
-import ResultsPage from '@/views/ResultsPage.vue'
 import LandingPage from '@/views/LandingPage.vue'
-import ContactPage from '@/views/ContactPage.vue'
-import AboutPage from '@/views/AboutPage.vue'
-import ErrorPage from '@/views/ErrorPage.vue'
 
 const routes = [
   { path: '/', component: LandingPage, name: 'LandingPage' },
-  { path: '/loading', component: LoadingPage, name: 'LoadingPage' },
-  { path: '/result', component: ResultsPage, name: 'ResultsPage' },
-  { path: '/about', component: AboutPage, name: 'AboutPage' },
-  { path: '/contact', component: ContactPage, name: 'ContactPage' },
-  { path: '/error', component: ErrorPage, name: 'ErrorPage' },
+  { path: '/loading', name: 'LoadingPage', component: () => import('@/views/LoadingPage.vue')},
+  { path: '/result', name: 'ResultsPage', component: () => import('@/views/ResultsPage.vue')},
+  { path: '/about', name: 'AboutPage', component: () => import('@/views/AboutPage.vue')},
+  { path: '/contact', name: 'ContactPage', component: () => import('@/views/ContactPage.vue')},
+  { path: '/error', name: 'ErrorPage', component: () => import('@/views/ErrorPage.vue')},
 ]
 
 const router = createRouter({
