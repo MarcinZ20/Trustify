@@ -3,14 +3,14 @@ import './assets/main.css'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
+import router from '@/router/index.ts'
+
 import App from './App.vue'
 
-import Vueform from '@vueform/vueform'
-import vueformConfig from '../vueform.config'
-
 const app = createApp(App)
+const pinia = createPinia()
 
-app.use(createPinia())
-app.use(Vueform, vueformConfig)
+app.use(pinia)
+app.use(router)
 
 app.mount('#app')

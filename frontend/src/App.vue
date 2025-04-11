@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import SearchForm from './components/SearchForm.vue'
-import AnswerView from './components/AnswerView.vue'
+import Footer from './components/Footer.vue'
+import Navbar from './components/Navbar.vue'
 </script>
 
 <template>
-  <header></header>
-  <main>
-    <div class="">
-      <SearchForm />
-    </div>
+  <main class="flex flex-col justify-between h-screen bg-gray-100">
+    <Navbar />
+    <router-view></router-view>
+    <Footer />
   </main>
 </template>

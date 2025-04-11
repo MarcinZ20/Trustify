@@ -1,60 +1,50 @@
 <script setup lang="ts">
-import axios from 'axios'
+import { reactive } from 'vue'
+import { useSearchStore } from '@/stores/search'
+import type { SearchParams } from '@/types/searchParams'
+import { useRouter } from 'vue-router'
 
-const handleSubmit = async (form$: any) => {
-  const requestData = form$.requestData
+const s = reactive<SearchParams>({
+  headline: '',
+  content: '',
+  url: '',
+})
 
-  form$.submitting = true
-  form$.cancelToken = form$.$vueform.services.axios.CancelToken.source()
+const store = useSearchStore()
+const router = useRouter()
 
-  let response
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
-  try {
-    response = await axios.post('http://localhost:8080/api/v1/search', requestData, {
-      cancelToken: form$.cancelToken.token,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    console.log('success', response.data)
-  } catch (error) {
-    console.log('error', error)
-  } finally {
-    form$.submitting = false
-  }
+const onSubmit = async () => {
+  console.log('This is searchFormComponent: \n' + { ...s })
+  store.submitSearchQuery({ ...s }, router)
 }
 </script>
 
 <template>
-  <div>
-    <Vueform size="lg" endpoint="false" @submit="handleSubmit">
-      <StaticElement name="heading">
-        <p class="text-2xl">Trustify</p>
-      </StaticElement>
-      <TextElement
-        :attrs="{ autofocus: true }"
-        label="Headline"
-        placeholder="Headline"
-        name="headline"
-        input-type="text"
-        autocomplete="off"
-      />
-      <TextElement
-        name="content"
-        label="Additional info"
-        placeholder="Context"
-        input-type="textarea"
-        autocomplete="off"
-      />
-      <TextElement
-        name="url"
-        label="Source"
-        placeholder="http://example.com"
-        input-type="text"
-        autocomplete="off"
-      />
-      <ButtonElement name="submit-button" :submits="true" full> Search </ButtonElement>
-    </Vueform>
+  <div class="p-4 rounded-lg">
+    <form @submit.prevent="onSubmit">
+      <div class="grid grid-cols-1 gap-2 md:grid-cols-4">
+        <div class="col-span-full md:col-span-3">
+          <input
+            v-model.lazy.trim="s.headline"
+            type="text"
+            id="searchbar"
+            name="searchbar"
+            required
+            class="w-full bg-white px-3.5 py-2 rounded-md text-zinc-800 outline-1 -outline-offset-1 outline-zinc-300 placeholder:text-gray-400 focus:outline-zinc-500 sm:text-sm"
+            placeholder="Violets are yellow ..."
+          />
+        </div>
+        <button
+          type="submit"
+          id="submit-button"
+          class="rounded-lg bg-zinc-800 text-white p-1.5 hover:bg-zinc-900"
+        >
+          Search
+        </button>
+      </div>
+    </form>
   </div>
 </template>
 
