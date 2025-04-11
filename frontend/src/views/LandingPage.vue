@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import SearchForm from '../components/SearchForm.vue'
-import Navbar from '../components/Navbar.vue'
 import MainHeader from '../components/MainHeader.vue'
 import Widget from '../components/Widget.vue'
 import RecentSearches from '../components/searches/RecentSearches.vue'
 import TrendingContainer from '../components/trending/TrendingContainer.vue'
-import Footer from '../components/Footer.vue'
 </script>
 
 <template>

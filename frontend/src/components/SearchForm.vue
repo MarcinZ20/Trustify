@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
-import { useRouter } from 'vue-router'
+import { useSearchStore } from '@/stores/search'
 import type { SearchParams } from '@/types/searchParams'
-import { searchContent } from '@/composables/useSearch'
+import { useRouter } from 'vue-router'
 
 const s = reactive<SearchParams>({
   headline: '',
@@ -10,28 +10,15 @@ const s = reactive<SearchParams>({
   url: '',
 })
 
+const store = useSearchStore()
 const router = useRouter()
 
-const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+
 const onSubmit = async () => {
-  // Push to the loading page
-  router.push({name: 'LoadingPage'})
-
-  try {
-    const result = await searchContent({...s})
-    await sleep(3000)
-    // After success push to the result page
-    router.push({
-      name: 'ResultsPage',
-      query: { headline: s.headline },
-      replace: true,
-    })
-  } catch (error) {
-    console.log(error)
-    router.push({ name: 'ErrorPage' })
-  }
+  console.log('This is searchFormComponent: \n' + { ...s })
+  store.submitSearchQuery({ ...s }, router)
 }
-
 </script>
 
 <template>
