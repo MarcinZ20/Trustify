@@ -8,5 +8,5 @@ type Source struct {
 type ResponseData struct {
 	Score   int      `json:"score"`
 	Sources []Source `json:"sources"`
-	Resutl  string   `json:"result"`
+	Result  string   `json:"result"`
 }
